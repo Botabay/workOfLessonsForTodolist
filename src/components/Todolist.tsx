@@ -1,6 +1,12 @@
 type PropsType={
     title:string
     body?: string
+    tasks:Array<TaskType>
+}
+type TaskType={
+    taskId:number
+    title:string
+    isDone:boolean
 }
 export const Todolist=(props:PropsType)=>{
     return(
