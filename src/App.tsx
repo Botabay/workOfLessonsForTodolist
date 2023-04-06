@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
 import { Todolist } from './components/Todolist';
-function App() {
+
+export const App=()=> {
     return (
         <div className="App">
-            <Todolist />
-            <Todolist />
-            <Todolist />
+            <Todolist title={'What to learn'}/>
+            <Todolist title={'What to remember'}/>
+            <Todolist title={'What to read'}/>
         </div>
     );
 }
-
-export default App;
