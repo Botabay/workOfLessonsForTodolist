@@ -1,10 +1,12 @@
 type PropsType={
     title:string
+    body?: string
 }
 export const Todolist=(props:PropsType)=>{
     return(
         <div>
                 <h3>{props.title}</h3>
+                <p>{props.body}</p>
                 <div>
                     <input/>
                     <button>+</button>
