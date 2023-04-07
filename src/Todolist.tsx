@@ -1,15 +1,18 @@
 import React from 'react';
+// import {filterType} from './App'
 
 type TaskType = {
     id: number
     title: string
     isDone: boolean
 }
+type filterType= 'All'|'Active'|'Completed';
 
 type PropsType = {
     title: string
     tasks: Array<TaskType>
     deleteItem:(id:number)=>void
+    // filterItems:(isDone:filterType)=>void
 }
 
 export function Todolist(props: PropsType) {
@@ -19,9 +22,20 @@ export function Todolist(props: PropsType) {
         if (e) props.deleteItem(e);
         return;
     }*/
-    const onClickButtonHandler =(id:number)=>{
+    const onClickLiButtonHandler =(id:number)=>{
         props.deleteItem(id)
     }
+    const onClickButtonHandler =(isDone:filterType)=>{
+        filterItems(isDone)
+    }
+
+    let tempView=props.tasks;
+    const [key,setKey]=React.useState('All');
+    const filterItems=(isDone:filterType)=>{
+        setKey(isDone)
+    }
+    if (key==='Completed') tempView=props.tasks.filter(el=>el.isDone);
+    if (key==='Active') tempView=props.tasks.filter(el=>!el.isDone);
     return <div>
         <h3>{props.title}</h3>
         <div>
@@ -29,10 +43,10 @@ export function Todolist(props: PropsType) {
             <button>+</button>
         </div>
         <ul>
-            {props.tasks.map(el=>{
+            {tempView.map(el=>{
                 return (
                     <li key={el.id}>
-                        <button onClick={()=>onClickButtonHandler(el.id)}>X</button>
+                        <button onClick={()=>onClickLiButtonHandler(el.id)}>X</button>
                         <input type="checkbox" checked={el.isDone} onChange={()=>{}}/>
                         <span>{el.title}</span>
                     </li>)
@@ -43,9 +57,9 @@ export function Todolist(props: PropsType) {
             <li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li> */}
         </ul>
         <div>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
+            <button onClick={()=>onClickButtonHandler('All')}>All</button>
+            <button onClick={()=>onClickButtonHandler('Active')}>Active</button>
+            <button onClick={()=>onClickButtonHandler('Completed')}>Completed</button>
         </div>
     </div>
 }
