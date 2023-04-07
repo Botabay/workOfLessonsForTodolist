@@ -25,17 +25,20 @@ export function Todolist(props: PropsType) {
     const onClickLiButtonHandler =(id:number)=>{
         props.deleteItem(id)
     }
-    const onClickButtonHandler =(isDone:filterType)=>{
-        filterItems(isDone)
-    }
-
-    let tempView=props.tasks;
     const [key,setKey]=React.useState('All');
     const filterItems=(isDone:filterType)=>{
         setKey(isDone)
     }
-    if (key==='Completed') tempView=props.tasks.filter(el=>el.isDone);
-    if (key==='Active') tempView=props.tasks.filter(el=>!el.isDone);
+    const onClickButtonHandler =(isDone:filterType)=>{
+        filterItems(isDone)
+    }
+    
+    const ff=()=>{
+        let tempView=props.tasks;    
+        if (key==='Completed') tempView=props.tasks.filter(el=>el.isDone);
+        if (key==='Active') tempView=props.tasks.filter(el=>!el.isDone);
+        return tempView;
+    }
     return <div>
         <h3>{props.title}</h3>
         <div>
@@ -43,7 +46,7 @@ export function Todolist(props: PropsType) {
             <button>+</button>
         </div>
         <ul>
-            {tempView.map(el=>{
+            {ff().map(el=>{
                 return (
                     <li key={el.id}>
                         <button onClick={()=>onClickLiButtonHandler(el.id)}>X</button>
