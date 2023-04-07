@@ -9,15 +9,18 @@ type TaskType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    deleteItem:(e:HTMLLIElement)=>void
+    deleteItem:(id:number)=>void
 }
 
 export function Todolist(props: PropsType) {
-    const onClickButtonHandler =(event:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+    /*const onClickButtonHandler =(event:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
         //event.currentTarget.closest('li')?.remove()//my first decision for deleting
         let e=event.currentTarget.closest('li');
         if (e) props.deleteItem(e);
         return;
+    }*/
+    const onClickButtonHandler =(id:number)=>{
+        props.deleteItem(id)
     }
     return <div>
         <h3>{props.title}</h3>
@@ -29,7 +32,7 @@ export function Todolist(props: PropsType) {
             {props.tasks.map(el=>{
                 return (
                     <li key={el.id}>
-                        <button onClick={onClickButtonHandler}>X</button>
+                        <button onClick={()=>onClickButtonHandler(el.id)}>X</button>
                         <input type="checkbox" checked={el.isDone} onChange={()=>{}}/>
                         <span>{el.title}</span>
                     </li>)
