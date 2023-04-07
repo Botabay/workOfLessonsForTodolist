@@ -13,10 +13,12 @@ function App() {
     //     { id: 2, title: "I am Happy", isDone: false },
     //     { id: 3, title: "Yo", isDone: false }
     // ]
-
+    const deleteItem=(e:HTMLLIElement)=>{
+        e.remove()
+    }
     return (
         <div className="App">
-            <Todolist title="What to learn" tasks={tasks1} />
+            <Todolist title="What to learn" tasks={tasks1} deleteItem={deleteItem}/>
             {/* <Todolist title="Songs" tasks={tasks2} /> */}
         </div>
     );

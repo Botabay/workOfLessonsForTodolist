@@ -9,11 +9,15 @@ type TaskType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
+    deleteItem:(e:HTMLLIElement)=>void
 }
 
 export function Todolist(props: PropsType) {
     const onClickButtonHandler =(event:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
-        event.currentTarget.closest('li')?.remove()//my firsr decision for deleting
+        //event.currentTarget.closest('li')?.remove()//my first decision for deleting
+        let e=event.currentTarget.closest('li');
+        if (e) props.deleteItem(e);
+        return;
     }
     return <div>
         <h3>{props.title}</h3>
