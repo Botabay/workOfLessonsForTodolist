@@ -41,6 +41,9 @@ function App() {
         setTasks(filteredTasks);
     }
 
+    const addTask=(a:string)=>{
+        console.log(a)
+    }
     // let [filter, setFilter] = useState<FilterValuesType>("all");
 
     // let tasksForTodolist = tasks;
@@ -66,7 +69,9 @@ function App() {
                       tasks={tasks}
                       removeTask={removeTask}
                       /*changeFilter={changeFilter}*/
-                      removeAllTasks={removeAllTasks}/>
+                      removeAllTasks={removeAllTasks}
+                      addTask={addTask}
+                      />
         </div>
     );
 }
