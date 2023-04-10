@@ -37,12 +37,22 @@ export function Todolist(props: PropsType) {
         setFilter(value);
     }
 
+    const onClickHandler=()=>{props.addTask(inpState);setInpState('')}
+    const onChangeHandler=(e:React.ChangeEvent<HTMLInputElement>)=>{setInpState(e.currentTarget.value)}
+    const onKeyPressHandler=(e:React.KeyboardEvent<HTMLInputElement>)=>{
+        if(e.key==='Enter')        console.log('adf');
+        return;
+    }
     let [inpState,setInpState]=useState<string>('');
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setInpState(e.currentTarget.value)}}/>
-            <button onClick={()=>{props.addTask(inpState)}}>+</button>
+            <input 
+                value={inpState}
+                onChange={onChangeHandler} 
+                onKeyPress={onKeyPressHandler}
+            />
+            <button onClick={onClickHandler}>+</button>
         </div>
         <ul>
             {

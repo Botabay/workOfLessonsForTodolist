@@ -42,7 +42,8 @@ function App() {
     }
 
     const addTask=(e:string)=>{
-        console.log(e)
+        const newTask={id: uuid(),title:e, isDone:false}
+        setTasks([newTask,...tasks])
     }
     // let [filter, setFilter] = useState<FilterValuesType>("all");
 
