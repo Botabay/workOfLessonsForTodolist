@@ -37,13 +37,26 @@ export function Todolist(props: PropsType) {
         setFilter(value);
     }
 
-    const onClickHandler=()=>{props.addTask(inpState);setInpState('')}
+    const onClickHandler=()=>{props.addTask(inpState);
+        setInpState('')}
     const onChangeHandler=(e:React.ChangeEvent<HTMLInputElement>)=>{setInpState(e.currentTarget.value)}
     const onKeyPressHandler=(e:React.KeyboardEvent<HTMLInputElement>)=>{
-        if(e.key==='Enter')        console.log('adf');
+        if(e.key==='Enter') {
+            props.addTask(inpState);
+            setInpState('');
+        }
         return;
     }
     let [inpState,setInpState]=useState<string>('');
+
+    const onClickLiHandler=(e:string) => {
+        props.removeTask(e)
+    };
+
+    const onClickFilterButtonHandler=(s:FilterValuesType)=>{
+        changeFilter(s);
+    }
+
     return <div>
         <h3>{props.title}</h3>
         <div>
@@ -59,7 +72,7 @@ export function Todolist(props: PropsType) {
                 arrayWrapper().map(t => <li key={t.id}>
                     <input type="checkbox" checked={t.isDone} onChange={() => { }} />
                     <span>{t.title}</span>
-                    <button onClick={() => { props.removeTask(t.id) }}>x</button>
+                    <button onClick={()=>{onClickLiHandler(t.id)}}>x</button>
                 </li>)
             }
         </ul>
@@ -69,16 +82,16 @@ export function Todolist(props: PropsType) {
             </button>
         </div>
         <div>
-            <button onClick={() => { changeFilter("all") }}>
+            <button onClick={() => { onClickFilterButtonHandler("all") }}>
                 All
             </button>
-            <button onClick={() => { changeFilter("active") }}>
+            <button onClick={() => { onClickFilterButtonHandler("active") }}>
                 Active
             </button>
-            <button onClick={() => { changeFilter("completed") }}>
+            <button onClick={() => { onClickFilterButtonHandler("completed") }}>
                 Completed
             </button>
-            <button onClick={() => { changeFilter("three") }}>
+            <button onClick={() => { onClickFilterButtonHandler("three") }}>
                 show the first three tasks
             </button>
         </div>
