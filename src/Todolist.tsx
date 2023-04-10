@@ -13,7 +13,7 @@ type PropsType = {
     removeTask: (taskId: string) => void
     // changeFilter: (value: FilterValuesType) => void
     removeAllTasks: () => void
-    addTask: (taskId: string) => void
+    addTask: (e:string) => void
 }
 
 export function Todolist(props: PropsType) {
@@ -36,11 +36,13 @@ export function Todolist(props: PropsType) {
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
+
+    let [inpState,setInpState]=useState<string>('');
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input />
-            <button onClick={()=>props.addTask('adf')}>+</button>
+            <input onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setInpState(e.currentTarget.value)}}/>
+            <button onClick={()=>{props.addTask(inpState)}}>+</button>
         </div>
         <ul>
             {

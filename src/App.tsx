@@ -41,8 +41,8 @@ function App() {
         setTasks(filteredTasks);
     }
 
-    const addTask=(a:string)=>{
-        console.log(a)
+    const addTask=(e:string)=>{
+        console.log(e)
     }
     // let [filter, setFilter] = useState<FilterValuesType>("all");
 
