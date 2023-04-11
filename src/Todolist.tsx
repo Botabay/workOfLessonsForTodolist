@@ -84,10 +84,13 @@ export function Todolist(props: PropsType) {
             </button>
         </div>
         <div>
+        <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
+        <Button callback={()=>{onClickFilterButtonHandler('active')} } value={'All'}/>
+        <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
+        <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
             {/* <button onClick={() => { onClickFilterButtonHandler("all") }}>
                 All
-            </button> */}
-            <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
+            </button>
             <button onClick={() => { onClickFilterButtonHandler("active") }}>
                 Active
             </button>
@@ -96,7 +99,7 @@ export function Todolist(props: PropsType) {
             </button>
             <button onClick={() => { onClickFilterButtonHandler("three") }}>
                 show the first three tasks
-            </button>
+            </button> */}
         </div>
     </div>
 }
