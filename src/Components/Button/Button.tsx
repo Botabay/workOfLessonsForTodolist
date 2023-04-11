@@ -3,10 +3,10 @@ type PropsType={
     value: string
 }
 export const Button=(props:PropsType)=>{
-    const onChangeHandler=()=>{
+    const onClickHandler=()=>{
         props.callback()
     }
     return(
-        <button onClick={onClickHandler}>{props.value</button>
+        <button onClick={onClickHandler}>{props.value}</button>
     )
 }

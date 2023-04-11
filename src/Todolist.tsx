@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 // import {FilterValuesType} from './App';
+import {Button} from './Components/Button/Button' 
 type FilterValuesType = "all" | "active" | "completed" | "three";
 type TaskType = {
     id: string
@@ -72,7 +73,8 @@ export function Todolist(props: PropsType) {
                 arrayWrapper().map(t => <li key={t.id}>
                     <input type="checkbox" checked={t.isDone} onChange={() => { }} />
                     <span>{t.title}</span>
-                    <button onClick={()=>{onClickLiHandler(t.id)}}>x</button>
+                {/* <button onClick={()=>{onClickLiHandler(t.id)}}>x</button> */}
+                    <Button callback={()=>{onClickLiHandler(t.id)} } value={'x'}/>
                 </li>)
             }
         </ul>
@@ -82,9 +84,10 @@ export function Todolist(props: PropsType) {
             </button>
         </div>
         <div>
-            <button onClick={() => { onClickFilterButtonHandler("all") }}>
+            {/* <button onClick={() => { onClickFilterButtonHandler("all") }}>
                 All
-            </button>
+            </button> */}
+            <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
             <button onClick={() => { onClickFilterButtonHandler("active") }}>
                 Active
             </button>
