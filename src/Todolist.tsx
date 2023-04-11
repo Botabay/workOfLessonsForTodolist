@@ -41,7 +41,14 @@ export function Todolist(props: PropsType) {
     const onClickHandler=()=>{props.addTask(inpState);
         setInpState('')}
     const onChangeHandler=(e:React.ChangeEvent<HTMLInputElement>)=>{setInpState(e.currentTarget.value)}
-    const onKeyPressHandler=(e:React.KeyboardEvent<HTMLInputElement>)=>{
+    // const onKeyPressHandler=(e:React.KeyboardEvent<HTMLInputElement>)=>{
+    //     if(e.key==='Enter') {
+    //         props.addTask(inpState);
+    //         setInpState('');
+    //     }
+    //     return;
+    // }
+    const onKeyDownHandler=(e:React.KeyboardEvent<HTMLInputElement>)=>{
         if(e.key==='Enter') {
             props.addTask(inpState);
             setInpState('');
@@ -64,7 +71,7 @@ export function Todolist(props: PropsType) {
             <input 
                 value={inpState}
                 onChange={onChangeHandler} 
-                onKeyPress={onKeyPressHandler}
+                onKeyDown={onKeyDownHandler}
             />
             <button onClick={onClickHandler}>+</button>
         </div>
@@ -85,9 +92,9 @@ export function Todolist(props: PropsType) {
         </div>
         <div>
         <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
-        <Button callback={()=>{onClickFilterButtonHandler('active')} } value={'All'}/>
-        <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
-        <Button callback={()=>{onClickFilterButtonHandler('all')} } value={'All'}/>
+        <Button callback={()=>{onClickFilterButtonHandler('active')} } value={'Active'}/>
+        <Button callback={()=>{onClickFilterButtonHandler('completed')} } value={'Completed'}/>
+        <Button callback={()=>{onClickFilterButtonHandler('three')} } value={'show the first three tasks'}/>
             {/* <button onClick={() => { onClickFilterButtonHandler("all") }}>
                 All
             </button>
