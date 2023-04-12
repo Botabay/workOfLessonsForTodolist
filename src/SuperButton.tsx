@@ -1,4 +1,20 @@
-//make old version superButton
+
+type PropsType={
+    callback:()=>void
+    name:string
+}
+export const SuperButton=(props:PropsType)=>{
+    const f=()=>{props.callback()}
+    return (
+        <button onClick={() => {
+            f()
+        }}>{props.name}
+        </button>
+    )
+}
+
+/**
+ * 
 type PropsType={
     callback:(id:number)=>void
     id:number
@@ -13,3 +29,4 @@ export const SuperButton=(props:PropsType)=>{
         </button>
     )
 }
+ */
