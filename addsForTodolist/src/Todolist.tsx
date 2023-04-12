@@ -1,6 +1,5 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterValuesType, TasksType} from './App';
-import {SuperButton} from './SuperButton'
 
 
 // export type TaskType = {
@@ -39,12 +38,11 @@ export function Todolist(props: PropsType) {
 
     return <div>
         <h3> {props.title}
-             {/* <button onClick={() => {
+            <button onClick={() => {
                 'removeTodolist'
             }}>x
-            </button>  */}
-            <SuperButton callback={props.removeTodolist} id={props.id} name={'x'}/>
-            
+            </button>
+
         </h3>
         <div>
             <input value={title}
