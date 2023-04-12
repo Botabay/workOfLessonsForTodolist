@@ -39,12 +39,15 @@ export function Todolist(props: PropsType) {
     const removeTodolistHandler=()=>{
         props.removeTodolist(props.id)
     }
-    const addTodolistHandler=(title:string)=>{
+    const addTaskHandler=(title:string)=>{
         props.addTask(title,props.id);
         setTitle('')
     }
     const removeTaskHandler=(taskId:string)=>{
         props.removeTask(taskId,props.id)
+    }
+    const bigFilter=(s:FilterValuesType) =>{
+        props.changeFilter(s,props.id)
     }
     //-----------------
     return <div>
@@ -63,7 +66,7 @@ export function Todolist(props: PropsType) {
                    className={error ? "error" : ""}
             />
             {/* <button onClick={() => {'addTask'}}>+</button> */}
-            <SuperButton callback={()=>addTodolistHandler(title)} name={'+'}/>
+            <SuperButton callback={()=>addTaskHandler(title)} name={'+'}/>
             {error && <div className="error-message">{error}</div>}
         </div>
         <ul>
@@ -84,7 +87,11 @@ export function Todolist(props: PropsType) {
             }
         </ul>
         <div>
-            <button className={props.filter === 'all' ? "active-filter" : ""}
+        <SuperButton callback={()=>bigFilter('all')} name={'All'}/>
+        <SuperButton callback={()=>bigFilter('active')} name={'Active'}/>
+        <SuperButton callback={()=>bigFilter('completed')} name={'Completed'}/>
+        
+            {/* <button className={props.filter === 'all' ? "active-filter" : ""}
                     onClick={()=>{}}>All
             </button>
             <button className={props.filter === 'active' ? "active-filter" : ""}
@@ -92,7 +99,7 @@ export function Todolist(props: PropsType) {
             </button>
             <button className={props.filter === 'completed' ? "active-filter" : ""}
                     onClick={()=>{}}>Completed
-            </button>
+            </button> */}
         </div>
         <p></p>
         {
